@@ -48,7 +48,7 @@ public class Canva extends JPanel {
         subtractButton.setBounds(335, 500, 45, 25);
         subtractButton.addActionListener(e -> subtractValue(Integer.parseInt(value.getText()), imageJPG));
         multiplyButton.setBounds(410, 500, 45, 25);
-        multiplyButton.addActionListener(e -> multiplyValue(Integer.parseInt(value.getText()), imageJPG));
+        multiplyButton.addActionListener(e -> multiplyValue(Float.parseFloat(value.getText()), imageJPG));
 
         divideButton.setBounds(465, 500, 45, 25);
         divideButton.addActionListener(e -> divideValue(Integer.parseInt(value.getText()), imageJPG));
@@ -62,8 +62,11 @@ public class Canva extends JPanel {
         medianFilterButton.setBounds(280, 530, 100, 25);
         medianFilterButton.addActionListener(e -> medianFilter( imageJPG));
         sobelFilterButton.setBounds(410, 530, 100, 25);
+        sobelFilterButton.addActionListener(e -> sobelFilter( imageJPG));
         sharpenerButton.setBounds(530, 530, 100, 25);
+        sharpenerButton.addActionListener(e -> highPassFilter(Integer.parseInt(value.getText()), imageJPG));
         gaussButton.setBounds(660, 530, 100, 25);
+        gaussButton.addActionListener(e -> gaussFilter(imageJPG));
 
 
 
@@ -101,6 +104,21 @@ public class Canva extends JPanel {
 
     }
 
+    private void gaussFilter(BufferedImage imageJPG) {
+        BufferedImage image = filtersService.getGaussianFilteredImage(imageJPG);
+        NewWindow newWindow = new NewWindow(image);
+    }
+
+    private void highPassFilter(int sharpness ,BufferedImage imageJPG) {
+        BufferedImage image = filtersService.getSharpenedImage(sharpness,imageJPG);
+        NewWindow newWindow = new NewWindow(image);
+    }
+
+    private void sobelFilter(BufferedImage imageJPG) {
+        BufferedImage image = filtersService.getSobelEdgeImage(imageJPG);
+        NewWindow newWindow = new NewWindow(image);
+    }
+
     private void medianFilter(BufferedImage imageJPG) {
         BufferedImage image = filtersService.getMedianFiltered(imageJPG);
         NewWindow newWindow = new NewWindow(image);
@@ -126,7 +144,7 @@ public class Canva extends JPanel {
         NewWindow newWindow = new NewWindow(image);
     }
 
-    private void multiplyValue(int value, BufferedImage imageJPG) {
+    private void multiplyValue(float value, BufferedImage imageJPG) {
         BufferedImage image = pointTransformationService.getMultiplied(value, imageJPG);
         NewWindow newWindow = new NewWindow(image);
     }

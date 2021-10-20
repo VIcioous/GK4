@@ -51,17 +51,17 @@ public class PointTransformationService {
         return imageJPG;
     }
 
-    public BufferedImage getMultiplied(int value, BufferedImage imageJPG) {
+    public BufferedImage getMultiplied(float value, BufferedImage imageJPG) {
         for (int y =0; y< imageJPG.getHeight();y++)
         {
             for (int x=0;x< imageJPG.getWidth();x++)
             {
                 Color c = new Color(imageJPG.getRGB(x,y));
-                int r = c.getRed()*value;
+                int r = c.getRed()*(int)value;
                 if(r>255) r=255;
-                int g = c.getGreen()*value;
+                int g = c.getGreen()*(int)value;
                 if(r>255) r=255;
-                int b = c.getBlue()*value;
+                int b = c.getBlue()*(int)value;
                 if(r>255) r=255;
 
                 int color =(r << 16) | (g << 8) | b;
