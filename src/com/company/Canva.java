@@ -51,7 +51,7 @@ public class Canva extends JPanel {
         multiplyButton.addActionListener(e -> multiplyValue(Float.parseFloat(value.getText()), imageJPG));
 
         divideButton.setBounds(465, 500, 45, 25);
-        divideButton.addActionListener(e -> divideValue(Integer.parseInt(value.getText()), imageJPG));
+        divideButton.addActionListener(e -> divideValue(Float.parseFloat(value.getText()), imageJPG));
 
         brightButton.setBounds(530, 500, 100, 25);
         toGrayButton.setBounds(660, 500, 100, 25);
@@ -145,11 +145,11 @@ public class Canva extends JPanel {
     }
 
     private void multiplyValue(float value, BufferedImage imageJPG) {
-        BufferedImage image = pointTransformationService.getMultiplied(value, imageJPG);
+        BufferedImage image = pointTransformationService.getMultiplied( value, imageJPG);
         NewWindow newWindow = new NewWindow(image);
     }
 
-    private void divideValue(int value, BufferedImage imageJPG) {
+    private void divideValue(float value, BufferedImage imageJPG) {
         BufferedImage image = pointTransformationService.getDivided(value, imageJPG);
         NewWindow newWindow = new NewWindow(image);
     }

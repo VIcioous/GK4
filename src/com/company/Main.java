@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
-        JFrame f = new JFrame("Reading PPM");
+        JFrame f = new JFrame("Operations And Filters");
         f.setSize(800, 600);
         f.setLocation(300, 300);
         f.setResizable(false);

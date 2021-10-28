@@ -51,17 +51,17 @@ public class PointTransformationService {
         return imageJPG;
     }
 
-    public BufferedImage getMultiplied(float value, BufferedImage imageJPG) {
+    public BufferedImage getMultiplied(double value, BufferedImage imageJPG) {
         for (int y =0; y< imageJPG.getHeight();y++)
         {
             for (int x=0;x< imageJPG.getWidth();x++)
             {
                 Color c = new Color(imageJPG.getRGB(x,y));
-                int r = c.getRed()*(int)value;
+                int r = (int)(c.getRed()*value);
                 if(r>255) r=255;
-                int g = c.getGreen()*(int)value;
+                int g = (int)(c.getGreen()*value);
                 if(r>255) r=255;
-                int b = c.getBlue()*(int)value;
+                int b = (int)(c.getBlue()*value);
                 if(r>255) r=255;
 
                 int color =(r << 16) | (g << 8) | b;
@@ -70,18 +70,18 @@ public class PointTransformationService {
         }
         return imageJPG;
     }
-    public BufferedImage getDivided(int value, BufferedImage imageJPG) {
+    public BufferedImage getDivided(double value, BufferedImage imageJPG) {
         if(value ==0) throw new IllegalArgumentException("Dzielenie przez zero, kmiocie");
         for (int y =0; y< imageJPG.getHeight();y++)
         {
             for (int x=0;x< imageJPG.getWidth();x++)
             {
                 Color c = new Color(imageJPG.getRGB(x,y));
-                int r = c.getRed()/value;
+                int r = (int)( c.getRed()/value);
                 if(r<0) r=0;
-                int g = c.getGreen()/value;
+                int g = (int)(c.getGreen()/value);
                 if(r<0) r=0;
-                int b = c.getBlue()/value;
+                int b = (int)(c.getBlue()/value);
                 if(r<0) r=0;
 
                 int color =(r << 16) | (g << 8) | b;
